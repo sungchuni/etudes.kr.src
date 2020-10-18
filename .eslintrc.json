@@ -1,0 +1,17 @@
+{
+  "env": {
+    "browser": true,
+    "es2020": true,
+    "node": true
+  },
+  "extends": "eslint:recommended",
+  "globals": {
+    "createUnityInstance": "readonly"
+  },
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "rules": {
+    "semi": ["error", "always"]
+  }
+}
