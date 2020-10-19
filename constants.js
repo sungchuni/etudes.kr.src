@@ -5,3 +5,4 @@ export const MOUNTAINS = [
   "mountain_02_DeMain_0015",
   "mountain_04_DeMain_0015",
 ];
+export const STORAGE_KEY_TUTORIAL = "ETUDES_KR_TUTORIAL";
