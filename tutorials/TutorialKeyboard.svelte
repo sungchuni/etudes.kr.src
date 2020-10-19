@@ -14,18 +14,18 @@
   let cancelId = 0;
   function destroy() {
     clearTimeout(cancelId);
-    window.removeEventListener("keyup", handleKeyup);
+    window.removeEventListener("keydown", handleKeydown);
     dispatch("done");
   }
-  function handleKeyup({code}) {
+  function handleKeydown({code}) {
     !cancelId &&
       (cancelId = setTimeout(() => {
         destroy();
-      }, 15000));
+      }, 5000));
     keyCodes.set(code, true);
     Array.from(keyCodes.values()).every(Boolean) && destroy();
   }
-  window.addEventListener("keyup", handleKeyup);
+  window.addEventListener("keydown", handleKeydown);
 </script>
 
 <style>
