@@ -6,7 +6,7 @@
   const dispatch = createEventDispatcher();
   const eventTypes = ["click", "keyup"];
   const message = navigator.language.startsWith("ko")
-    ? "스피커를 켜거나 이어폰, 헤드폰을 착용하세요."
+    ? "스피커를 켜거나 이어폰, 헤드폰을 착용하십시오."
     : "Turn on your speakers, or wear earphones or headphones.";
   function destroy() {
     eventTypes.forEach((type) => {
