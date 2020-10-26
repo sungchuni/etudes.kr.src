@@ -11,7 +11,7 @@ export default {
   output: {
     format: "iife",
     file: "../dist/index.min.js",
-    sourcemap: true,
+    sourcemap: !production,
   },
   plugins: [
     css(),
@@ -20,7 +20,7 @@ export default {
     svelte({
       dev: !production,
       css(css) {
-        css.write("tutorial.min.css", true);
+        css.write("tutorial.min.css", !production);
       },
     }),
     production && terser(),
