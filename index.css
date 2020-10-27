@@ -45,45 +45,39 @@ body {
   background-position: center;
 }
 
-@keyframes scale {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(1.2);
-  }
-}
-
 .loading {
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
   width: 100%;
+  min-width: 1024px;
   height: 100%;
+  min-height: 768px;
   background-size: cover;
   background-position: center;
-  animation: scale 60s infinite alternate linear;
+  transform: translate(-50%, -50%);
 }
 
 @keyframes progress {
-  0% {
-    background-position: 0%;
-  }
-  100% {
+  from {
     background-position: 200%;
+  }
+  to {
+    background-position: 0%;
   }
 }
 
-.loading::after {
+.progress::after {
   content: "";
   position: absolute;
-  bottom: 10%;
-  left: 5%;
+  top: 50%;
+  left: 10%;
   display: block;
-  width: 90%;
+  width: 80%;
   height: 2px;
-  background: linear-gradient(to right, var(--white-bg), transparent);
-  background-size: 200%;
+  background: linear-gradient(to left, var(--white-bg), transparent);
+  background-size: 400%;
   opacity: 0.67;
+  transform: translateY(-50%);
   animation: progress 2s infinite linear;
 }

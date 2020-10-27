@@ -11,11 +11,9 @@ window.dataLayer = window.dataLayer || [];
 window.devicePixelRatio = 1.5;
 
 async function main() {
-  const [loading, unityInstance] = await Promise.all([
-    createLoading(),
-    bootstrap(),
-  ]);
   log();
+  const loading = await createLoading();
+  const unityInstance = await bootstrap();
   listenFullscreen(unityInstance);
   await removeLoading(loading);
   createTutorial();

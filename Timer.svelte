@@ -22,17 +22,18 @@
   };
   let date = null;
   let handleMount = () => {
+    const start = 22;
     const iso8601 = document.getElementById("ISO8601");
     date = new Date(iso8601.textContent);
-    if (date.getHours() < 22) {
+    if (date.getHours() < start) {
       const soon = new Date(date);
-      soon.setHours(22);
+      soon.setHours(start);
       soon.setMinutes(0);
       soon.setSeconds(0);
       soon.setMilliseconds(0);
-      (remain = soon - date) > 0
-        ? requestAnimationFrame(computeTime)
-        : dispatch("done");
+      (remain = soon - date) > 0 && requestAnimationFrame(computeTime);
+    } else {
+      requestAnimationFrame(() => dispatch("done"));
     }
     iso8601.remove();
   };
@@ -44,17 +45,30 @@
 
 <style>
   .timer {
-    position: fixed;
+    position: absolute;
     top: 50%;
-    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     color: white;
     font-family: Georgia, "Times New Roman", Times, serif;
-    font-size: 128px;
-    text-align: center;
-    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    font-size: 180px;
     transform: translateY(-50%);
+  }
+  .character {
+    flex-basis: 0.55em;
+    min-width: 0;
+    text-align: center;
+  }
+  .semi {
+    flex-basis: 0.3em;
   }
 </style>
 
-<div class="timer">{print}</div>
+<div class="timer">
+  {#each print as character}
+    <span class="character" class:semi={character === ':'}>{character}</span>
+  {/each}
+</div>
