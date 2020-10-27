@@ -8,10 +8,10 @@
       image.src = new URL(`/Static/1px.webp`, CLOUDFRONT_HOST);
       await image.decode();
     } catch {
-      ext = "jpg";
+      ext = "png";
     }
   };
-  let getSrc = (name) => {
+  $: getSrc = (name) => {
     return new URL(`${CLOUDFRONT_HOST}/Static/${name}.${ext}`);
   };
   onMount(handleMount);
