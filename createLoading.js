@@ -10,13 +10,14 @@ export default async function createLoading() {
     Object.assign(deferred, {resolve, reject})
   );
   createMountain();
-  new Title({target: loading});
+  const title = new Title({target: loading});
   const timer = new Timer({target: loading});
   timer.$on("done", deferred.resolve);
   document.body.appendChild(loading);
   const {classList} = loading;
   classList.add("loading");
   await deferred.promise;
+  title.$destroy();
   classList.add("progress");
   return loading;
 }
