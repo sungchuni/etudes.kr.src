@@ -9,15 +9,13 @@
     const diff = now - timestamp;
     timestamp = now;
     remain -= diff;
-    print = [
+    const [h, m, s] = [
       remain / 3600000,
       (remain / 60000) % 60,
       (remain / 1000) % 60,
       (remain % 1000) * 0.1,
-    ]
-      .map(Math.trunc)
-      .map(numberFormat.format)
-      .join(":");
+    ];
+    print = [h, m, s].map(Math.trunc).map(numberFormat.format).join(":");
     remain > 0 ? requestAnimationFrame(computeTime) : dispatch("done");
   };
   let date = null;
@@ -54,20 +52,25 @@
     width: 100%;
     color: white;
     font-family: Georgia, "Times New Roman", Times, serif;
-    font-size: 180px;
+    font-size: 256px;
+    font-style: oblique;
+    text-shadow: 4px 4px 2px rgba(0, 0, 0, 0.1);
     transform: translateY(-50%);
   }
+  .hidden {
+    display: none;
+  }
   .character {
-    flex-basis: 0.55em;
+    flex-basis: 0.6em;
     min-width: 0;
     text-align: center;
   }
   .semi {
-    flex-basis: 0.3em;
+    flex-basis: 0.4em;
   }
 </style>
 
-<div class="timer">
+<div class="timer" class:hidden={!(remain > 0)}>
   {#each print as character}
     <span class="character" class:semi={character === ':'}>{character}</span>
   {/each}
