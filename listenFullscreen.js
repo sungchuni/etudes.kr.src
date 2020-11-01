@@ -1,5 +1,8 @@
 export default function listenFullscreen(unityInstance) {
   document
-    .querySelector(".fullscreen")
+    .querySelector(".main")
+    .appendChild(
+      Object.assign(document.createElement("div"), {className: "fullscreen"})
+    )
     .addEventListener("click", () => unityInstance.SetFullscreen(1));
 }

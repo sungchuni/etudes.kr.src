@@ -14,7 +14,7 @@ async function main() {
   log();
   const loading = await createLoading();
   const unityInstance = await bootstrap();
-  listenFullscreen(unityInstance);
   await removeLoading(loading);
-  createTutorial();
+  await createTutorial();
+  listenFullscreen(unityInstance);
 }
