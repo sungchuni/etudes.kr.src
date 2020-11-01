@@ -24,17 +24,23 @@ export default async function createLoading() {
 
 async function createMountain() {
   const [mountain] = Array.from(MOUNTAINS).sort(() => Math.random() - 0.5);
-  const image = loading.appendChild(new Image());
+  const picture = loading.appendChild(
+    Object.assign(document.createElement("picture"), {draggable: false})
+  );
+  picture.appendChild(
+    Object.assign(document.createElement("source"), {
+      srcset: `${CLOUDFRONT_HOST}/Static/${mountain}.webp`,
+      type: "image/webp",
+    })
+  );
+  const image = picture.appendChild(
+    Object.assign(new Image(), {
+      src: `${CLOUDFRONT_HOST}/Static/${mountain}.jpg`,
+    })
+  );
   image.style.cssText = `
   width: 100%;
   height: 100%;
   object-fit: cover;
   `;
-  try {
-    image.src = new URL(`/Static/1px.webp`, CLOUDFRONT_HOST);
-    await image.decode();
-    image.src = new URL(`/Static/${mountain}.webp`, CLOUDFRONT_HOST);
-  } catch {
-    image.src = new URL(`/Static/${mountain}.jpg`, CLOUDFRONT_HOST);
-  }
 }
