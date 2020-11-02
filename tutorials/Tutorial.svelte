@@ -1,6 +1,6 @@
 <script>
   import {onMount} from "svelte";
-  export let handleMount = () => {};
+  export const handleMount = () => {};
   onMount(handleMount);
 </script>
 

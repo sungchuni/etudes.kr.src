@@ -10,17 +10,16 @@ export default {
   input: "index.js",
   output: {
     format: "iife",
-    file: "../dist/index.min.js",
-    sourcemap: !production,
+    file: "../dist/index.js",
+    sourcemap: true,
   },
   plugins: [
     css(),
     image(),
     nodeResolve(),
     svelte({
-      dev: !production,
       css(css) {
-        css.write("tutorial.min.css", !production);
+        css.write("tutorial.css", true);
       },
     }),
     production && terser(),

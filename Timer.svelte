@@ -4,7 +4,11 @@
   const numberFormat = new Intl.NumberFormat("ko-KR", {
     minimumIntegerDigits: 2,
   });
-  let computeTime = () => {
+  let date = null;
+  let print = "";
+  let remain = 0;
+  let timestamp = performance.now();
+  function computeTime() {
     const now = performance.now();
     const diff = now - timestamp;
     timestamp = now;
@@ -17,9 +21,8 @@
     ];
     print = [h, m, s].map(Math.trunc).map(numberFormat.format).join(":");
     remain > 0 ? requestAnimationFrame(computeTime) : dispatch("done");
-  };
-  let date = null;
-  let handleMount = () => {
+  }
+  function handleMount() {
     const start = 22;
     const iso8601 = document.getElementById("ISO8601");
     date = new Date(iso8601.textContent);
@@ -34,10 +37,7 @@
       requestAnimationFrame(() => dispatch("done"));
     }
     iso8601.remove();
-  };
-  let print = "";
-  let remain = 0;
-  let timestamp = performance.now();
+  }
   onMount(handleMount);
 </script>
 

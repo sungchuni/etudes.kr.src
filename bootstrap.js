@@ -15,7 +15,7 @@ export default async function bootstrap() {
     streamingAssetsUrl: new URL("/StreamingAssets", CLOUDFRONT_HOST).toString(),
     companyName: "Yeong Die",
     productName: "etudes.kr",
-    productVersion: "0.3.0",
+    productVersion: "1.0.1",
   });
   return unityInstance;
 }
