@@ -23,15 +23,18 @@
     remain > 0 ? requestAnimationFrame(computeTime) : dispatch("done");
   }
   function handleMount() {
-    const start = 22;
+    const start = 13;
+    const end = 15;
     const iso8601 = document.getElementById("ISO8601");
     date = new Date(iso8601.textContent);
-    if (date.getHours() < start) {
+    const uTCHours = date.getUTCHours();
+    if (uTCHours < start || uTCHours >= end) {
       const soon = new Date(date);
-      soon.setHours(start);
-      soon.setMinutes(0);
-      soon.setSeconds(0);
-      soon.setMilliseconds(0);
+      uTCHours >= end && soon.setUTCDate(soon.getUTCDate() + 1);
+      soon.setUTCHours(start);
+      soon.setUTCMinutes(0);
+      soon.setUTCSeconds(0);
+      soon.setUTCMilliseconds(0);
       (remain = soon - date) > 0 && requestAnimationFrame(computeTime);
     } else {
       requestAnimationFrame(() => dispatch("done"));
